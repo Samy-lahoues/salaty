@@ -1,26 +1,369 @@
+/* Font Face Declarations */
+@font-face {
+    font-family: "Space Grotesk";
+    src: url("/fonts/Space_Grotesk/SpaceGrotesk-VariableFont_wght.ttf")
+        format("truetype");
+    font-weight: 300 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Amiri";
+    src: url("/fonts/Amiri/Amiri-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Amiri";
+    src: url("/fonts/Amiri/Amiri-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Amiri";
+    src: url("/fonts/Amiri/Amiri-Italic.ttf") format("truetype");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Amiri";
+    src: url("/fonts/Amiri/Amiri-BoldItalic.ttf") format("truetype");
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+@import "tw-animate-css";
+@custom-variant dark (&:where(.dark, .dark *));
 @import "tailwindcss";
 
+@layer base {
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    }
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --font-family-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    --font-family-arabic: "Amiri", serif;
+    --background: oklch(100% 0 0);
+    --foreground: oklch(9% 0 0);
+    --card: oklch(100% 0 0);
+    --card-foreground: oklch(9% 0 0);
+    --popover: oklch(100% 0 0);
+    --popover-foreground: oklch(9% 0 0);
+    --primary: oklch(9% 0 0);
+    --primary-foreground: oklch(98% 0 0);
+    --secondary: oklch(96% 0 0);
+    --secondary-foreground: oklch(9% 0 0);
+    --muted: oklch(96% 0 0);
+    --muted-foreground: oklch(45% 0 0);
+    --accent: oklch(96% 0 0);
+    --accent-foreground: oklch(9% 0 0);
+    --destructive: oklch(60% 0.15 29);
+    --destructive-foreground: oklch(98% 0 0);
+    --border: oklch(90% 0 0);
+    --input: oklch(90% 0 0);
+    --ring: oklch(9% 0 0);
+    --chart-1: oklch(61% 0.15 29);
+    --chart-2: oklch(39% 0.1 184);
+    --chart-3: oklch(24% 0.05 220);
+    --chart-4: oklch(66% 0.15 85);
+    --chart-5: oklch(67% 0.2 38);
+
+    --sidebar-background: oklch(98% 0 0);
+    --sidebar-foreground: oklch(26% 0.005 240);
+    --sidebar-primary: oklch(10% 0.01 240);
+    --sidebar-primary-foreground: oklch(98% 0 0);
+    --sidebar-accent: oklch(96% 0.005 240);
+    --sidebar-accent-foreground: oklch(10% 0.01 240);
+    --sidebar-border: oklch(91% 0.02 220);
+    --sidebar-ring: oklch(60% 0.2 217);
+
+    --radius: 0.5rem;
+
+    --animate-accordion-down: accordion-down 0.2s ease-out;
+    --animate-accordion-up: accordion-up 0.2s ease-out;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+    --background: oklch(4% 0 0);
+    --foreground: oklch(98% 0 0);
+    --card: oklch(4% 0 0);
+    --card-foreground: oklch(98% 0 0);
+    --popover: oklch(4% 0 0);
+    --popover-foreground: oklch(98% 0 0);
+    --primary: oklch(98% 0 0);
+    --primary-foreground: oklch(9% 0 0);
+    --secondary: oklch(15% 0 0);
+    --secondary-foreground: oklch(98% 0 0);
+    --muted: oklch(15% 0 0);
+    --muted-foreground: oklch(64% 0 0);
+    --accent: oklch(15% 0 0);
+    --accent-foreground: oklch(98% 0 0);
+    --destructive: oklch(31% 0.12 29);
+    --destructive-foreground: oklch(98% 0 0);
+    --border: oklch(15% 0 0);
+    --input: oklch(15% 0 0);
+    --ring: oklch(83% 0 0);
+    --chart-1: oklch(50% 0.14 220);
+    --chart-2: oklch(45% 0.12 160);
+    --chart-3: oklch(55% 0.16 30);
+    --chart-4: oklch(60% 0.13 280);
+    --chart-5: oklch(55% 0.15 340);
+
+    --sidebar-background: oklch(10% 0.01 240);
+    --sidebar-foreground: oklch(96% 0.005 240);
+    --sidebar-primary: oklch(48% 0.15 224);
+    --sidebar-primary-foreground: oklch(100% 0 0);
+    --sidebar-accent: oklch(16% 0.005 240);
+    --sidebar-accent-foreground: oklch(96% 0.005 240);
+    --sidebar-border: oklch(16% 0.005 240);
+    --sidebar-ring: oklch(60% 0.2 217);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+
+    --color-sidebar-background: var(--sidebar-background);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes accordion-down {
+    from {
+        height: 0;
+    }
+    to {
+        height: var(--radix-accordion-content-height);
+    }
+}
+
+@keyframes accordion-up {
+    from {
+        height: var(--radix-accordion-content-height);
+    }
+    to {
+        height: 0;
+    }
+}
+
+@layer base {
+    * {
+        border-color: var(--color-border);
+    }
+
+    body {
+        background-color: var(--color-background);
+        color: var(--color-foreground);
+        font-family: var(--font-family-sans);
+    }
+
+    /* Arabic text styling */
+    .font-arabic {
+        font-family: var(--font-family-arabic);
+    }
+
+    /* Font utility classes */
+    .font-sans {
+        font-family: var(--font-family-sans);
+    }
+}
+
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    /* Quran-inspired utility classes */
+    .bg-quran-card {
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-theme-border);
+    }
+
+    .bg-quran-card-variant {
+        background-color: var(--color-surface-variant);
+        border: 1px solid var(--color-theme-border-muted);
+    }
+
+    .bg-quran-surface {
+        background-color: var(--color-surface-muted);
+    }
+
+    .text-quran-primary {
+        color: var(--color-text-primary);
+    }
+
+    .text-quran-secondary {
+        color: var(--color-text-secondary);
+    }
+
+    .text-quran-muted {
+        color: var(--color-text-muted);
+    }
+
+    .border-quran {
+        border-color: var(--color-theme-border);
+    }
+
+    .border-quran-muted {
+        border-color: var(--color-theme-border-muted);
+    }
+
+    /* Backdrop effects for cards */
+    .backdrop-quran {
+        backdrop-filter: blur(8px);
+        background-color: color-mix(
+            in srgb,
+            var(--color-surface) 90%,
+            transparent
+        );
+    }
+
+    .backdrop-quran-variant {
+        backdrop-filter: blur(4px);
+        background-color: color-mix(
+            in srgb,
+            var(--color-surface-variant) 70%,
+            transparent
+        );
+    }
+
+    /* Hover effects */
+    .hover-quran-surface:hover {
+        background-color: var(--color-surface-variant);
+        border-color: var(--color-theme-border);
+    }
+
+    /* Focus styles */
+    .focus-quran:focus {
+        outline: none;
+        border-color: var(--color-theme-primary);
+        box-shadow: 0 0 0 2px
+            color-mix(in srgb, var(--color-theme-primary) 20%, transparent);
+    }
+
+    /* Button variants */
+    .btn-quran-primary {
+        background-color: var(--color-theme-primary);
+        color: var(--color-primary-foreground);
+        border: 1px solid var(--color-theme-primary);
+        transition: all 0.2s ease;
+    }
+
+    .btn-quran-primary:hover {
+        background-color: color-mix(
+            in srgb,
+            var(--color-theme-primary) 90%,
+            transparent
+        );
+        transform: translateY(-1px);
+    }
+
+    .btn-quran-secondary {
+        background-color: var(--color-surface-variant);
+        color: var(--color-text-secondary);
+        border: 1px solid var(--color-theme-border);
+        transition: all 0.2s ease;
+    }
+
+    .btn-quran-secondary:hover {
+        background-color: var(--color-surface-muted);
+        color: var(--color-text-primary);
+        border-color: var(--color-theme-primary);
+    }
+}
+
+/* Utility classes for layout */
+.container-mx {
+    @apply container mx-auto;
+}
+
+.flex-center {
+    @apply flex justify-center items-center;
+}
+
+.flex-between {
+    @apply flex justify-between items-center;
+}
+
+/* Scrollbar styling for dark theme */
+.dark ::-webkit-scrollbar {
+    width: 8px;
+}
+
+.dark ::-webkit-scrollbar-track {
+    background: var(--color-surface-variant);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: var(--color-theme-border);
+    border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-theme-primary);
+}
+
+/* Selection styling */
+::selection {
+    background-color: color-mix(
+        in srgb,
+        var(--color-theme-primary) 30%,
+        transparent
+    );
+    color: var(--color-text-primary);
+}
+
+/* Focus outline for accessibility */
+.dark *:focus-visible {
+    outline: 2px solid var(--color-theme-primary);
+    outline-offset: 2px;
 }

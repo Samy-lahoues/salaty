@@ -20,7 +20,7 @@ const SpecialCard = forwardRef<HTMLDivElement, SpecialCardProps>(
     return (
       <Card
         ref={ref}
-        className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm border-0 shadow-lg"
+        className={`bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm border-0 shadow-lg`}
       >
         <CardContent className="px-4 sm:px-6 py-2 sm:py-4">
           <h3

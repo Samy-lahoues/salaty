@@ -170,13 +170,13 @@ const Page = () => {
                 onValueChange={handleCityChange}
                 disabled={useGPS || loading}
               >
-                <SelectTrigger className="flex-1 min-w-0">
+                <SelectTrigger className="flex-1 min-w-0 font-sans">
                   <SelectValue
                     placeholder={t("selectCity")}
                     className="truncate"
                   />
                 </SelectTrigger>
-                <SelectContent className="max-h-60 overflow-y-auto">
+                <SelectContent className="max-h-60 overflow-y-auto font-sans">
                   {cities.map((city) => (
                     <SelectItem
                       key={`${city.name}-${city.country}`}
@@ -190,7 +190,6 @@ const Page = () => {
                   ))}
                 </SelectContent>
               </Select>
-
               <Button
                 variant={useGPS ? "default" : "outline"}
                 size="icon"
@@ -229,10 +228,10 @@ const Page = () => {
               onValueChange={handleMethodChange}
               disabled={loading}
             >
-              <SelectTrigger className="w-full">
+              <SelectTrigger className="w-full font-sans">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="max-h-60 overflow-y-auto">
+              <SelectContent className="max-h-60 overflow-y-auto font-sans">
                 {CALCULATION_METHODS.map((method) => (
                   <SelectItem key={method.value} value={String(method.value)}>
                     {method.label}

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
 import { Compass, MapPin, Navigation } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { cardinalDirections } from "@/constants";
 
 const Page = () => {
     const [direction, setDirection] = useState<number | null>(null);
@@ -43,17 +44,6 @@ const Page = () => {
     }, []);
 
     const CompassDesign = ({ qiblaDirection }: { qiblaDirection: number }) => {
-        const cardinalDirections = [
-            { label: "N", angle: 0, color: "text-red-500" },
-            { label: "NE", angle: 45, color: "text-gray-400" },
-            { label: "E", angle: 90, color: "text-gray-400" },
-            { label: "SE", angle: 135, color: "text-gray-400" },
-            { label: "S", angle: 180, color: "text-gray-400" },
-            { label: "SW", angle: 225, color: "text-gray-400" },
-            { label: "W", angle: 270, color: "text-gray-400" },
-            { label: "NW", angle: 315, color: "text-gray-400" },
-        ];
-
         return (
             <div className="flex flex-col items-center space-y-6">
                 {/* Location Info */}

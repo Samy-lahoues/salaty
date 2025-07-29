@@ -5,6 +5,7 @@ interface TranslationContextType {
     language: Language;
     setLanguage: (lang: Language) => void;
     t: (key: TranslationKey) => string;
+    isRTL: boolean;
 }
 export const translationContext = createContext<
     TranslationContextType | undefined

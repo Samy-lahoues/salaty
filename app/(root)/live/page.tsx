@@ -9,13 +9,11 @@ const Page = () => {
     const handleError = () => {
         setVideoError(true);
     };
-    const { language, t } = useTranslation();
+    const { isRTL, t } = useTranslation();
     return (
         <section className="container-mx px-4 py-8 max-w-6xl">
             <Card className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm border-0 shadow-lg">
-                <CardHeader
-                    style={{ direction: language === "ar" ? "rtl" : "ltr" }}
-                >
+                <CardHeader style={{ direction: isRTL ? "rtl" : "ltr" }}>
                     <CardTitle className="flex items-center gap-2">
                         <Video className="w-6 h-6 text-blue-600" />
                         <h2 className="text-2xl font-semibold">{t("live")}</h2>

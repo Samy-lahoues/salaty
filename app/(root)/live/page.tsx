@@ -15,7 +15,9 @@ const Page = () => {
             <Card className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm border-0 shadow-lg">
                 <CardHeader style={{ direction: isRTL ? "rtl" : "ltr" }}>
                     <CardTitle className="flex items-center gap-2">
-                        <Video className="w-6 h-6 text-blue-600" />
+                        <div className="p-2 bg-accent-bg rounded-lg">
+                            <Video className="w-6 h-6 text-accent" />
+                        </div>
                         <h2 className="text-2xl font-semibold">{t("live")}</h2>
                     </CardTitle>
                 </CardHeader>

@@ -2,10 +2,10 @@ export const translations = {
   en: {
     // Navigation
     home: "Home",
-    quran: "Qur'an Reading",
-    sibha: "Sibha",
-    qibla: "Qibla Direction",
-    live: "Mecca Live",
+    quran: "Qur'an",
+    sibha: "Tasbih Counter",
+    qibla: "Qibla",
+    live: "Live from Mecca",
 
     // Home page
     prayerTimes: "Prayer Times",
@@ -71,14 +71,21 @@ export const translations = {
     shawwal: "Shawwal",
     dhuAlQadah: "Dhu al-Qi'dah",
     dhuAlHijjah: "Dhu al-Hijjah",
+    // quran page
+    quickAccess: "Quick access",
+    surah: "Surah",
+    juz: "Juz",
+    ayat: "Ayat",
+    noSurahsFound: "No sourahs found",
+    loadingSurahs: "Loading Surahs",
   },
   ar: {
     // Navigation
     home: "الرئيسية",
-    quran: "قراءة القرآن",
-    sibha: "السبحة",
-    qibla: "اتجاه القبلة",
-    live: "بث مكة المباشر",
+    quran: "القرآن الكريم",
+    sibha: "عداد التسبيح",
+    qibla: "القبلة",
+    live: "البث المباشر من مكة",
 
     // Home page
     prayerTimes: "أوقات الصلاة",
@@ -145,6 +152,13 @@ export const translations = {
     shawwal: "شوال",
     dhuAlQadah: "ذو القعدة",
     dhuAlHijjah: "ذو الحجة",
+    // quran page
+    quickAccess: "الوصول السريع",
+    surah: "سورة",
+    juz: "جزء",
+    ayat: "آية",
+    noSurahsFound: "لا يوجد سورة",
+    loadingSurahs: "تحميل السور",
   },
 };
 export const prayerNames = (isRTL: boolean) => {

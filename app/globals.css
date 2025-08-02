@@ -14,8 +14,29 @@
         padding: 0;
         box-sizing: border-box;
     }
-}
 
+    /* Global scrollbar styling */
+    *::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    *::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background: var(--accent);
+        border-radius: 10px;
+    }
+}
+@font-face {
+    font-family: "Amiri Quran";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/AmiriQuran-Regular.woff2") format("woff2");
+}
 :root {
     --font-family-sans:
         var(--font-roboto), "Roboto", "Arial", "Helvetica", ui-sans-serif,
@@ -38,27 +59,18 @@
     --secondary-foreground: oklch(9% 0 0);
     --muted: oklch(96% 0 0);
     --muted-foreground: oklch(45% 0 0);
-    --accent: oklch(96% 0 0);
-    --accent-foreground: oklch(9% 0 0);
     --destructive: oklch(60% 0.15 29);
     --destructive-foreground: oklch(98% 0 0);
     --border: oklch(90% 0 0);
     --input: oklch(90% 0 0);
-    --ring: oklch(9% 0 0);
+    --ring: #00a63e;
     --chart-1: oklch(61% 0.15 29);
     --chart-2: oklch(39% 0.1 184);
     --chart-3: oklch(24% 0.05 220);
     --chart-4: oklch(66% 0.15 85);
     --chart-5: oklch(67% 0.2 38);
-
-    --sidebar-background: oklch(98% 0 0);
-    --sidebar-foreground: oklch(26% 0.005 240);
-    --sidebar-primary: oklch(10% 0.01 240);
-    --sidebar-primary-foreground: oklch(98% 0 0);
-    --sidebar-accent: oklch(96% 0.005 240);
-    --sidebar-accent-foreground: oklch(10% 0.01 240);
-    --sidebar-border: oklch(91% 0.02 220);
-    --sidebar-ring: oklch(60% 0.2 217);
+    --icon: #05df72;
+    --icon-bg: #ccf4dc;
 
     --radius: 0.5rem;
 
@@ -79,27 +91,17 @@
     --secondary-foreground: oklch(98% 0 0);
     --muted: oklch(15% 0 0);
     --muted-foreground: oklch(64% 0 0);
-    --accent: oklch(15% 0 0);
-    --accent-foreground: oklch(98% 0 0);
     --destructive: oklch(31% 0.12 29);
     --destructive-foreground: oklch(98% 0 0);
     --border: oklch(15% 0 0);
     --input: oklch(15% 0 0);
-    --ring: oklch(83% 0 0);
     --chart-1: oklch(50% 0.14 220);
     --chart-2: oklch(45% 0.12 160);
     --chart-3: oklch(55% 0.16 30);
     --chart-4: oklch(60% 0.13 280);
     --chart-5: oklch(55% 0.15 340);
-
-    --sidebar-background: oklch(10% 0.01 240);
-    --sidebar-foreground: oklch(96% 0.005 240);
-    --sidebar-primary: oklch(48% 0.15 224);
-    --sidebar-primary-foreground: oklch(100% 0 0);
-    --sidebar-accent: oklch(16% 0.005 240);
-    --sidebar-accent-foreground: oklch(96% 0.005 240);
-    --sidebar-border: oklch(16% 0.005 240);
-    --sidebar-ring: oklch(60% 0.2 217);
+    --icon: #05df72;
+    --icon-bg: #113f30;
 }
 
 @theme {
@@ -115,27 +117,17 @@
     --color-secondary-foreground: var(--secondary-foreground);
     --color-muted: var(--muted);
     --color-muted-foreground: var(--muted-foreground);
-    --color-accent: var(--accent);
-    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--icon);
+    --color-accent-bg: var(--icon-bg);
     --color-destructive: var(--destructive);
     --color-destructive-foreground: var(--destructive-foreground);
     --color-border: var(--border);
     --color-input: var(--input);
-    --color-ring: var(--ring);
-    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring) --color-chart-1: var(--chart-1);
     --color-chart-2: var(--chart-2);
     --color-chart-3: var(--chart-3);
     --color-chart-4: var(--chart-4);
     --color-chart-5: var(--chart-5);
-
-    --color-sidebar-background: var(--sidebar-background);
-    --color-sidebar-foreground: var(--sidebar-foreground);
-    --color-sidebar-primary: var(--sidebar-primary);
-    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-    --color-sidebar-accent: var(--sidebar-accent);
-    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-    --color-sidebar-border: var(--sidebar-border);
-    --color-sidebar-ring: var(--sidebar-ring);
 }
 
 @keyframes accordion-down {
@@ -167,28 +159,16 @@
         font-family: var(--font-family-sans);
     }
 
-    html[lang="en"] body,
-    html[lang="en"] body *,
-    html[lang="en"] * {
+    html[lang="en"] body {
         font-family:
             var(--font-roboto), "Roboto", "Arial", "Helvetica", ui-sans-serif,
             system-ui, sans-serif !important;
-    }
-
-    html[lang="ar"] {
-        font-feature-settings:
-            "liga" 1,
-            "kern" 1;
     }
 
     html[lang="ar"] body {
         font-family:
             var(--font-amiri), var(--font-roboto), "Roboto", "Arial",
             "Helvetica", ui-sans-serif, system-ui, sans-serif;
-    }
-
-    html[lang="ar"] * {
-        font-family: inherit;
     }
 
     .font-mono {
@@ -320,6 +300,90 @@
         color: var(--color-text-primary);
         border-color: var(--color-theme-primary);
     }
+
+    /* Custom scrollbar classes */
+    .custom-scrollbar {
+        scrollbar-width: thin;
+        scrollbar-color: var(--color-accent) transparent;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 4px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: var(--color-accent);
+        border-radius: 4px;
+        border: none;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: color-mix(in srgb, var(--color-accent) 80%, transparent);
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-button {
+        display: none;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-corner {
+        background: transparent;
+    }
+
+    /* Hide scrollbar on mobile (screens smaller than 768px) */
+    @media (max-width: 767px) {
+        .custom-scrollbar {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    /* Show custom scrollbar only on desktop */
+    .custom-scrollbar-visible {
+        scrollbar-width: thin;
+        scrollbar-color: var(--color-accent) transparent;
+    }
+
+    @media (min-width: 768px) {
+        .custom-scrollbar-visible::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .custom-scrollbar-visible::-webkit-scrollbar-track {
+            background: transparent;
+            border-radius: 4px;
+        }
+
+        .custom-scrollbar-visible::-webkit-scrollbar-thumb {
+            background: var(--color-accent);
+            border-radius: 4px;
+            border: none;
+        }
+
+        .custom-scrollbar-visible::-webkit-scrollbar-thumb:hover {
+            background: color-mix(
+                in srgb,
+                var(--color-accent) 80%,
+                transparent
+            );
+        }
+
+        .custom-scrollbar-visible::-webkit-scrollbar-button {
+            display: none;
+        }
+
+        .custom-scrollbar-visible::-webkit-scrollbar-corner {
+            background: transparent;
+        }
+    }
 }
 
 .container-mx {
@@ -332,23 +396,6 @@
 
 .flex-between {
     @apply flex justify-between items-center;
-}
-
-.dark ::-webkit-scrollbar {
-    width: 8px;
-}
-
-.dark ::-webkit-scrollbar-track {
-    background: var(--color-surface-variant);
-}
-
-.dark ::-webkit-scrollbar-thumb {
-    background: var(--color-theme-border);
-    border-radius: 4px;
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-theme-primary);
 }
 
 ::selection {
@@ -367,4 +414,55 @@
 
 .font-mono {
     font-family: var(--font-family-mono);
+}
+.font-quran {
+    font-family: "Amiri Quran", var(--font-family-arabic);
+}
+
+/* Smooth scroll utilities */
+.smooth-scroll {
+    scroll-behavior: smooth;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* Animation utilities */
+.animate-in {
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+
+.fade-in {
+    animation-name: fadeIn;
+}
+
+.slide-in-up {
+    animation-name: slideInUp;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

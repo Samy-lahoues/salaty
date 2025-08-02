@@ -20,7 +20,10 @@ export default function SibhaPage() {
             <Card className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm border-0 shadow-lg">
                 <CardHeader>
                     <CardTitle className={`text-2xl flex items-center gap-2`}>
-                        <Circle className="w-6 h-6 text-blue-600" />
+                        <div className="p-2 bg-accent-bg rounded-lg">
+                            <Circle className="w-6 h-6 text-accent" />
+                        </div>
+
                         {t("sibha")}
                     </CardTitle>
                 </CardHeader>

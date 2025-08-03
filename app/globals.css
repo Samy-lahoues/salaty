@@ -2,6 +2,18 @@
 @custom-variant dark (&:where(.dark, .dark *));
 @import "tailwindcss";
 
+::-webkit-scrollbar {
+    width: 8px; /* Adjust as needed */
+}
+::-webkit-scrollbar-track {
+    background-color: #fff;
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #05df72;
+    border-radius: 5px;
+}
+
 @layer base {
     *,
     *::before,
@@ -14,22 +26,8 @@
         padding: 0;
         box-sizing: border-box;
     }
-
-    /* Global scrollbar styling */
-    *::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    *::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
-    }
-
-    *::-webkit-scrollbar-thumb {
-        background: var(--accent);
-        border-radius: 10px;
-    }
 }
+
 @font-face {
     font-family: "Amiri Quran";
     font-style: normal;
@@ -37,6 +35,7 @@
     font-display: swap;
     src: url("/fonts/AmiriQuran-Regular.woff2") format("woff2");
 }
+
 :root {
     --font-family-sans:
         var(--font-roboto), "Roboto", "Arial", "Helvetica", ui-sans-serif,
@@ -123,7 +122,8 @@
     --color-destructive-foreground: var(--destructive-foreground);
     --color-border: var(--border);
     --color-input: var(--input);
-    --color-ring: var(--ring) --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-chart-1: var(--chart-1);
     --color-chart-2: var(--chart-2);
     --color-chart-3: var(--chart-3);
     --color-chart-4: var(--chart-4);
@@ -301,103 +301,20 @@
         border-color: var(--color-theme-primary);
     }
 
-    /* Custom scrollbar classes */
-    .custom-scrollbar {
-        scrollbar-width: thin;
-        scrollbar-color: var(--color-accent) transparent;
+    .container-mx {
+        @apply container mx-auto;
     }
 
-    .custom-scrollbar::-webkit-scrollbar {
-        width: 8px;
+    .flex-center {
+        @apply flex justify-center items-center;
     }
 
-    .custom-scrollbar::-webkit-scrollbar-track {
-        background: transparent;
-        border-radius: 4px;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: var(--color-accent);
-        border-radius: 4px;
-        border: none;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-        background: color-mix(in srgb, var(--color-accent) 80%, transparent);
-    }
-
-    .custom-scrollbar::-webkit-scrollbar-button {
-        display: none;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar-corner {
-        background: transparent;
-    }
-
-    /* Hide scrollbar on mobile (screens smaller than 768px) */
-    @media (max-width: 767px) {
-        .custom-scrollbar {
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-
-        .custom-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-    }
-
-    /* Show custom scrollbar only on desktop */
-    .custom-scrollbar-visible {
-        scrollbar-width: thin;
-        scrollbar-color: var(--color-accent) transparent;
-    }
-
-    @media (min-width: 768px) {
-        .custom-scrollbar-visible::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .custom-scrollbar-visible::-webkit-scrollbar-track {
-            background: transparent;
-            border-radius: 4px;
-        }
-
-        .custom-scrollbar-visible::-webkit-scrollbar-thumb {
-            background: var(--color-accent);
-            border-radius: 4px;
-            border: none;
-        }
-
-        .custom-scrollbar-visible::-webkit-scrollbar-thumb:hover {
-            background: color-mix(
-                in srgb,
-                var(--color-accent) 80%,
-                transparent
-            );
-        }
-
-        .custom-scrollbar-visible::-webkit-scrollbar-button {
-            display: none;
-        }
-
-        .custom-scrollbar-visible::-webkit-scrollbar-corner {
-            background: transparent;
-        }
+    .flex-between {
+        @apply flex justify-between items-center;
     }
 }
 
-.container-mx {
-    @apply container mx-auto;
-}
-
-.flex-center {
-    @apply flex justify-center items-center;
-}
-
-.flex-between {
-    @apply flex justify-between items-center;
-}
-
+/* Selection styling */
 ::selection {
     background-color: color-mix(
         in srgb,
@@ -407,14 +324,17 @@
     color: var(--color-text-primary);
 }
 
+/* Focus styles */
 .dark *:focus-visible {
     outline: 2px solid var(--color-theme-primary);
     outline-offset: 2px;
 }
 
+/* Font utilities */
 .font-mono {
     font-family: var(--font-family-mono);
 }
+
 .font-quran {
     font-family: "Amiri Quran", var(--font-family-arabic);
 }
@@ -422,15 +342,6 @@
 /* Smooth scroll utilities */
 .smooth-scroll {
     scroll-behavior: smooth;
-}
-
-.scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-    display: none;
 }
 
 /* Animation utilities */

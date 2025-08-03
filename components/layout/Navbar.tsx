@@ -54,10 +54,11 @@ const Navbar = () => {
     <>
       <header
         className={cn(
-          "px-4 sm:px-6 lg:px-20 py-3 sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60",
+          "px-4 sm:px-6 lg:px-20 py-3 sticky top-0 z-50 w-full border-b bg-gradient-to-r backdrop-blur from-black via-gray-900 to-black",
           isRTL ? "font-arabic" : "font-sans",
         )}
       >
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-green-400 via-emerald-400 to-transparent" />
         <div className="flex-between max-w-7xl mx-auto">
           {/* Logo */}
           <Link

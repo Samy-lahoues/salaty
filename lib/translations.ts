@@ -10,7 +10,7 @@ export const translations = {
     // Home page
     prayerTimes: "Prayer Times",
     todaysPrayerTimes: "Today's Prayer Times",
-    prayerCounter: "Daily Prayer Counter",
+    prayerTracker: "Daily Prayer Tracker",
     nextPrayer: "Next",
     refresh: "Refresh",
     loading: "loading...",
@@ -78,6 +78,9 @@ export const translations = {
     ayat: "Ayat",
     noSurahsFound: "No sourahs found",
     loadingSurahs: "Loading Surahs",
+    adhanFinished: "Adhan finished playing",
+    adhanFinishedDescription: "May Allah accept good deeds from us and you",
+    hidjriCalendar: "Hidjri Calendar",
   },
   ar: {
     // Navigation
@@ -90,7 +93,7 @@ export const translations = {
     // Home page
     prayerTimes: "أوقات الصلاة",
     todaysPrayerTimes: "أوقات صلاة اليوم",
-    prayerCounter: "عداد الصلوات اليومية",
+    prayerTracker: "عداد الصلوات اليومية",
     nextPrayer: "التالية",
     refresh: "تحديث",
     loading: "تحميل...",
@@ -159,6 +162,9 @@ export const translations = {
     ayat: "آية",
     noSurahsFound: "لا يوجد سورة",
     loadingSurahs: "تحميل السور",
+    adhanFinished: "انتهى الأذان",
+    adhanFinishedDescription: "تقبل الله منا ومنكم صالح الأعمال",
+    hidjriCalendar: "التقويم الهجري",
   },
 };
 export const prayerNames = (isRTL: boolean) => {

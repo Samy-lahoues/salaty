@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import useTranslation from "@/hooks/useTranslation";
 import { BookOpen, Search } from "lucide-react";
 import FilterButton from "@/components/ui/quran/FilterButton";
@@ -17,7 +18,7 @@ const Page = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filter, setFilter] = useState<FilterType>("surah");
   const isRTL = false; // Get this from your language context/hook
-
+  const router = useRouter();
   // Mock useQuran hook - replace with your actual hook
   const { surahs, loading, error } = useQuran();
 
@@ -50,9 +51,8 @@ const Page = () => {
           .includes(searchQuery.toLowerCase()),
     ) || [];
 
-  const handleSurahClick = (surah: Surah) => {
-    // Navigate to surah reading page
-    console.log("Navigate to surah:", surah.id);
+  const handleSurahClick = (id: number) => {
+    router.push(`/quran/${id}`);
   };
 
   const handleQuickAccessClick = (surahId: number) => {
@@ -103,8 +103,6 @@ const Page = () => {
             ))}
           </div>
         </div>
-
-        {/* Filter Buttons */}
         <div
           className={`flex mb-5 md:mb-6 mt-5 mx-auto ${isRTL ? "flex-row-reverse" : ""}`}
         >
@@ -120,18 +118,16 @@ const Page = () => {
             />
           ))}
         </div>
-
-        {/* Surahs List */}
         <AnimatedList
           items={filteredSurahs}
           renderItem={(surah: Surah) => (
             <SurahCard
               key={surah.id}
               surah={surah}
-              onClick={() => handleSurahClick(surah)}
+              onClick={() => handleSurahClick(surah.id)}
             />
           )}
-          onItemSelect={(surah: Surah) => handleSurahClick(surah)}
+          onItemSelect={(surah: Surah) => handleSurahClick(surah.id)}
           itemsClassName="space-y-3"
           maxHeight="500px"
           displayScrollbar={true}

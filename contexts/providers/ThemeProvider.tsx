@@ -6,24 +6,24 @@ import type { Theme } from "../ThemeContext";
 import { useEffect } from "react";
 
 const ThemeProvider = ({ children }: { children: ReactNode }) => {
-    const [theme, setTheme] = useState<Theme>("light");
-    const newTheme = theme === "light" ? "dark" : "light";
-    const toggleTheme = () => {
-        setTheme(newTheme);
-    };
+  const [theme, setTheme] = useState<Theme>("dark");
+  const newTheme = theme === "light" ? "dark" : "light";
+  const toggleTheme = () => {
+    setTheme(newTheme);
+  };
 
-    useEffect(() => {
-        if (theme === "dark") {
-            document.documentElement.classList.add("dark");
-        } else {
-            document.documentElement.classList.remove("dark");
-        }
-    }, [theme]);
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
 
-    return (
-        <ThemeContext.Provider value={{ theme, toggleTheme }}>
-            {children}
-        </ThemeContext.Provider>
-    );
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
 };
 export default ThemeProvider;

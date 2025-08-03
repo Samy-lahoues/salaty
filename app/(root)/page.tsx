@@ -116,7 +116,7 @@ const Page = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, [isRTL]);
+  }, [isRTL, isMobile]);
   return (
     <section className="container mx-auto px-3 sm:px-4 py-6 sm:py-8 max-w-6xl min-h-screen">
       {/* Header */}

@@ -8,7 +8,7 @@ import {
   useState,
 } from "react";
 import { useTheme } from "@/hooks/useTheme";
-import { Clock, RefreshCcw, Volume2, VolumeX } from "lucide-react";
+import { RefreshCcw, Volume2, VolumeX } from "lucide-react";
 import { Skeleton } from "../skeleton";
 import { Card, CardHeader, CardTitle, CardContent } from "../card";
 import { Button } from "../button";
@@ -223,7 +223,6 @@ const PrayerTimesCard = forwardRef<HTMLDivElement, PrayerTimesCardProps>(
         <CardHeader>
           <div className="flex-between">
             <CardTitle className="text-base sm:text-lg font-semibold mb-4 flex items-center gap-2">
-              {/*<Clock className="w-4 h-4 sm:w-5 sm:h-5 text-accent flex-shrink-0" />*/}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

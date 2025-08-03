@@ -1,12 +1,5 @@
-interface pageProps {
-  params: { id: string };
-}
-const Page = async ({ params }: pageProps) => {
+const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
-  return (
-    <div className="container">
-      <h1> this is surah {id} </h1>
-    </div>
-  );
+  return <div>My surah page: {id}</div>;
 };
 export default Page;

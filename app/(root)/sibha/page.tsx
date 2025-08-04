@@ -30,7 +30,7 @@ export default function SibhaPage() {
         <CardContent>
           <div className="text-center space-y-8">
             {/* Counter Display */}
-            <div className="bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 rounded-full w-48 h-48 mx-auto flex items-center justify-center">
+            <div className="bg-gradient-to-br from-blue-100 to-purple-100 dark:from-green-500/30 dark:to-black/20 rounded-full w-48 h-48 mx-auto flex items-center justify-center">
               <span className="text-6xl font-bold text-gray-900 dark:text-white">
                 {count === 99 ? 33 : count % 33}
               </span>

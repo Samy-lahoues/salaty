@@ -12,7 +12,11 @@ export const useQuran = () => {
     const url = "https://quranapi.pages.dev/api/surah.json";
     try {
       setLoading(true);
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        headers: {
+          Accept: "application/json",
+        },
+      });
       if (!response.ok) {
         throw new Error("Failed to fetch surahs");
       }

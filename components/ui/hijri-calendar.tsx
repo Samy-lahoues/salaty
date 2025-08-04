@@ -310,6 +310,7 @@ function HijriCalendar({
               size="icon"
               onClick={() => navigateMonth("prev")}
               className="size-8"
+              aria-label="previous month"
             >
               {isRTL ? (
                 <ChevronRightIcon className="size-4" />
@@ -336,6 +337,7 @@ function HijriCalendar({
               size="icon"
               onClick={() => navigateMonth("next")}
               className="size-8"
+              aria-label="next month"
             >
               {isRTL ? (
                 <ChevronLeftIcon className="size-4" />
@@ -377,10 +379,10 @@ function HijriCalendar({
                 onMouseEnter={() => setHoveredDate(dayData.hijriDate)}
                 onMouseLeave={() => setHoveredDate(null)}
                 className={cn(
-                  "h-8 w-full p-0 font-normal text-sm hover:bg-accent",
+                  "h-8 w-full p-0 font-normal text-sm hover:bg-green-700",
                   !dayData.isCurrentMonth && "text-muted-foreground opacity-50",
                   dayData.isToday &&
-                    "bg-accent text-accent-foreground font-medium",
+                    "bg-green-700 text-accent-foreground font-medium",
                   isInRange && "bg-primary/20",
                   (isStart || isEnd) && "bg-primary text-primary-foreground",
                   isStart &&

@@ -1,4 +1,3 @@
-"use client";
 import React, {
   useRef,
   useState,
@@ -7,8 +6,10 @@ import React, {
   MouseEventHandler,
   UIEvent,
 } from "react";
+import { Surah } from "@/constants";
 import { motion, useInView } from "framer-motion";
-
+import "@/app/css/AnimatedList.css";
+import SurahCard from "./SurahCard";
 interface AnimatedItemProps {
   children: ReactNode;
   delay?: number;
@@ -25,59 +26,66 @@ const AnimatedItem: React.FC<AnimatedItemProps> = ({
   onClick,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { amount: 0.3, once: false });
-
+  const inView = useInView(ref, { amount: 0.5, once: false });
   return (
     <motion.div
       ref={ref}
       data-index={index}
       onMouseEnter={onMouseEnter}
       onClick={onClick}
-      initial={{ y: 30, opacity: 0, scale: 0.95 }}
-      animate={
-        inView
-          ? { y: 0, opacity: 1, scale: 1 }
-          : { y: 30, opacity: 0, scale: 0.95 }
-      }
-      transition={{
-        duration: 0.5,
-        delay,
-        ease: [0.25, 0.46, 0.45, 0.94],
-      }}
-      className="mb-3"
+      initial={{ scale: 0.7, opacity: 0 }}
+      animate={inView ? { scale: 1, opacity: 1 } : { scale: 0.7, opacity: 0 }}
+      transition={{ duration: 0.2, delay }}
+      style={{ marginBottom: "1rem", cursor: "pointer" }}
     >
       {children}
     </motion.div>
   );
 };
 
-interface AnimatedListProps<T> {
-  items?: T[];
-  renderItem: (item: T, index: number) => ReactNode;
-  onItemSelect?: (item: T, index: number) => void;
+interface AnimatedListProps {
+  surahs?: Surah[];
+  onItemSelect?: (item: string, index: number) => void;
   showGradients?: boolean;
   enableArrowNavigation?: boolean;
   className?: string;
-  itemsClassName?: string;
+  itemClassName?: string;
   displayScrollbar?: boolean;
   initialSelectedIndex?: number;
-  emptyState?: ReactNode;
-  maxHeight?: string;
+  SelectAction?: (id: number) => void;
+  loading?: boolean;
 }
 
-const AnimatedList = <T,>({
-  items = [],
-  renderItem,
-  onItemSelect,
-  showGradients = false,
-  enableArrowNavigation = false,
+const AnimatedList: React.FC<AnimatedListProps> = ({
+  surahs = [
+    {
+      id: 1,
+      surahName: "Al-Fatihah",
+      surahNameArabic: "الفاتحة",
+      surahNameArabicLong: "الفاتحة",
+      surahNameTranslation: "The Opening",
+      revelationPlace: "Mecca",
+      totalAyah: 7,
+    },
+    {
+      id: 2,
+      surahName: "Al-Baqarah",
+      surahNameArabic: "البقرة",
+      surahNameArabicLong: "البقرة",
+      surahNameTranslation: "The Cow",
+      revelationPlace: "Mecca",
+      totalAyah: 286,
+    },
+  ],
+  showGradients = true,
+  enableArrowNavigation = true,
   className = "",
-  itemsClassName = "",
+  itemClassName = "",
   displayScrollbar = true,
   initialSelectedIndex = -1,
-  emptyState = null,
-  maxHeight = "400px",
-}: AnimatedListProps<T>) => {
+  SelectAction,
+  loading = false,
+}) => {
   const listRef = useRef<HTMLDivElement>(null);
   const [selectedIndex, setSelectedIndex] =
     useState<number>(initialSelectedIndex);
@@ -86,10 +94,8 @@ const AnimatedList = <T,>({
   const [bottomGradientOpacity, setBottomGradientOpacity] = useState<number>(1);
 
   const handleScroll = (e: UIEvent<HTMLDivElement>) => {
-    if (!showGradients) return;
-
-    const { scrollTop, scrollHeight, clientHeight } =
-      e.target as HTMLDivElement;
+    const target = e.target as HTMLDivElement;
+    const { scrollTop, scrollHeight, clientHeight } = target;
     setTopGradientOpacity(Math.min(scrollTop / 50, 1));
     const bottomDistance = scrollHeight - (scrollTop + clientHeight);
     setBottomGradientOpacity(
@@ -98,46 +104,39 @@ const AnimatedList = <T,>({
   };
 
   useEffect(() => {
-    if (!enableArrowNavigation || items.length === 0) return;
-
+    if (!enableArrowNavigation) return;
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowDown" || (e.key === "Tab" && !e.shiftKey)) {
         e.preventDefault();
         setKeyboardNav(true);
-        setSelectedIndex((prev) => Math.min(prev + 1, items.length - 1));
+        setSelectedIndex((prev) => Math.min(prev + 1, surahs.length - 1));
       } else if (e.key === "ArrowUp" || (e.key === "Tab" && e.shiftKey)) {
         e.preventDefault();
         setKeyboardNav(true);
         setSelectedIndex((prev) => Math.max(prev - 1, 0));
       } else if (e.key === "Enter") {
-        if (selectedIndex >= 0 && selectedIndex < items.length) {
+        if (selectedIndex >= 0 && selectedIndex < surahs.length) {
           e.preventDefault();
-          if (onItemSelect) {
-            onItemSelect(items[selectedIndex], selectedIndex);
-          }
         }
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [items, selectedIndex, onItemSelect, enableArrowNavigation]);
+  }, [surahs, selectedIndex, enableArrowNavigation]);
 
   useEffect(() => {
     if (!keyboardNav || selectedIndex < 0 || !listRef.current) return;
-
     const container = listRef.current;
     const selectedItem = container.querySelector(
       `[data-index="${selectedIndex}"]`,
     ) as HTMLElement | null;
-
     if (selectedItem) {
       const extraMargin = 50;
       const containerScrollTop = container.scrollTop;
       const containerHeight = container.clientHeight;
       const itemTop = selectedItem.offsetTop;
       const itemBottom = itemTop + selectedItem.offsetHeight;
-
       if (itemTop < containerScrollTop + extraMargin) {
         container.scrollTo({ top: itemTop - extraMargin, behavior: "smooth" });
       } else if (
@@ -153,58 +152,51 @@ const AnimatedList = <T,>({
     setKeyboardNav(false);
   }, [selectedIndex, keyboardNav]);
 
-  if (items.length === 0 && emptyState) {
-    return <div className={className}>{emptyState}</div>;
-  }
-
-  // Custom scrollbar classes based on displayScrollbar and screen size
-  const scrollbarClasses = displayScrollbar
-    ? "overflow-y-auto smooth-scroll"
-    : "overflow-y-auto smooth-scroll scrollbar-hide";
-
   return (
-    <div className={`relative w-full ${className}`}>
+    <div className={`scroll-list-container ${className}`}>
       <div
         ref={listRef}
-        className={`${scrollbarClasses} ${itemsClassName}`}
-        style={{
-          maxHeight,
-          scrollBehavior: "smooth",
-        }}
+        className={`scroll-list ${!displayScrollbar ? "no-scrollbar" : ""}`}
         onScroll={handleScroll}
       >
-        {items.map((item, index) => (
-          <AnimatedItem
-            key={index}
-            delay={Math.min(index * 0.03, 0.5)}
-            index={index}
-            onMouseEnter={
-              enableArrowNavigation ? () => setSelectedIndex(index) : undefined
-            }
-            onClick={
-              onItemSelect
-                ? () => {
-                    setSelectedIndex(index);
-                    onItemSelect(item, index);
+        {loading ? (
+          <div className="h-full flex-center">
+            <span className="w-8 h-8 border-4 border-green-500 border-dashed rounded-full animate-spin"></span>
+          </div>
+        ) : (
+          surahs.map((surah, index) => (
+            <AnimatedItem
+              key={index}
+              delay={0.1}
+              index={index}
+              onMouseEnter={() => setSelectedIndex(index)}
+              onClick={() => {
+                setSelectedIndex(index);
+              }}
+            >
+              <SurahCard
+                key={index}
+                surah={surah as Surah}
+                onClick={() => {
+                  if (SelectAction) {
+                    SelectAction(surah.id);
                   }
-                : undefined
-            }
-          >
-            {renderItem(item, index)}
-          </AnimatedItem>
-        ))}
-      </div>
-
+                }}
+              />
+            </AnimatedItem>
+          ))
+        )}
+      </div>{" "}
       {showGradients && (
         <>
           <div
-            className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-background via-background/80 to-transparent pointer-events-none transition-opacity duration-300 z-10"
+            className="top-gradient"
             style={{ opacity: topGradientOpacity }}
-          />
+          ></div>
           <div
-            className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none transition-opacity duration-300 z-10"
+            className="bottom-gradient"
             style={{ opacity: bottomGradientOpacity }}
-          />
+          ></div>
         </>
       )}
     </div>

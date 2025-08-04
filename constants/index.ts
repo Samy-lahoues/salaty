@@ -89,11 +89,10 @@ const QUICK_ACCESS_SURAHS = [
   { name: "Al-Kahf", id: 18 },
   { name: "Maryam", id: 19 },
   { name: "Al-A'la", id: 87 },
-  { name: "Al-Fatiha", id: 1 },
-  { name: "Al-Baqarah", id: 2 },
+  { name: "Al-Baqara", id: 2 },
   { name: "Al-Mulk", id: 67 },
-  { name: "Yasin", id: 36 },
-  { name: "Ar-Rahman", id: 55 },
+  { name: "Yaseen", id: 36 },
+  { name: "Ar-Rahmaan", id: 55 },
 ];
 export type FilterType = "surah" | "juz" | "ayat";
 

@@ -35,16 +35,6 @@ const Loading = () => {
           Salaty
         </motion.h1>
 
-        {/* Subtitle */}
-        <motion.p
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-white text-xl font-semibold mb-12 text-center drop-shadow-lg"
-        >
-          Your Islamic Prayer Companion
-        </motion.p>
-
         {/* Loading Dots */}
         <div className="flex space-x-3 mb-12">
           {[0, 1, 2, 3].map((index) => (
@@ -68,36 +58,6 @@ const Loading = () => {
             />
           ))}
         </div>
-
-        {/* Loading Text */}
-        <motion.p
-          animate={{
-            opacity: [0.6, 1, 0.6],
-          }}
-          transition={{
-            duration: 2.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="text-white/90 text-lg font-medium drop-shadow-md"
-        >
-          Preparing your spiritual journey...
-        </motion.p>
-      </motion.div>
-
-      {/* Islamic Greeting */}
-      <motion.div
-        initial={{ y: 30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1, delay: 0.8 }}
-        className="mt-16 text-center"
-      >
-        <p className="text-white font-arabic text-2xl font-bold drop-shadow-lg mb-3">
-          السلام عليكم ورحمة الله وبركاته
-        </p>
-        <p className="text-white/90 text-base font-medium drop-shadow-sm">
-          Assalamu Alaikum wa Rahmatullahi wa Barakatuh
-        </p>
       </motion.div>
 
       {/* Floating Particles */}

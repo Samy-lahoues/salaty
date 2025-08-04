@@ -267,6 +267,7 @@ const PrayerTimesCard = forwardRef<HTMLDivElement, PrayerTimesCardProps>(
                 className={`flex items-center gap-2 bg-transparent ${
                   isRTL && "flex-row-reverse"
                 }`}
+                aria-label="refresh button"
               >
                 <RefreshCcw className={isMobile ? "w-4 h-4" : ""} />
                 {!isMobile && t("refresh")}

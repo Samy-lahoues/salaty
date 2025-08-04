@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import useTranslation from "@/hooks/useTranslation";
 import { BookOpen, Search } from "lucide-react";
 import FilterButton from "@/components/ui/quran/FilterButton";
-import SurahCard from "@/components/ui/quran/SurahCard";
 import { Card, CardContent, CardTitle, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -55,13 +54,13 @@ const Page = () => {
     router.push(`/quran/${id}`);
   };
 
-  const handleQuickAccessClick = (surahId: number) => {
+  const handleQuickAccessClick = (surahName: string) => {
     // Navigate to specific surah
-    console.log("Quick access to surah:", surahId);
+    setSearchQuery(surahName);
   };
 
   return (
-    <Card className="w-full max-w-4xl mx-auto">
+    <Card className="w-full max-w-4xl mx-auto mt-8 md:mt-16">
       <CardHeader>
         <CardTitle className="flex items-center space-x-3">
           <div className="p-2 rounded-lg bg-accent-bg">
@@ -77,7 +76,7 @@ const Page = () => {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
           <Input
             type="text"
-            placeholder="Search surah..."
+            placeholder={isRTL ? "ابحث عن سورة" : "Search surah..."}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10 w-full"
@@ -95,8 +94,11 @@ const Page = () => {
                 key={surah.id}
                 variant="outline"
                 size="sm"
-                className="rounded-full border-accent/30 hover:bg-accent hover:text-white transition-colors"
-                onClick={() => handleQuickAccessClick(surah.id)}
+                className={`
+                  p-2 mx-1 rounded-lg transition-colors font-medium bg-secondary text-secondary-foreground hover:bg-accent/10 active:bg-green-600 active:text-white active:shadow-md
+                  ${isRTL ? "font-arabic" : "font-sans"}
+                  `}
+                onClick={() => handleQuickAccessClick(surah.name)}
               >
                 {surah.name}
               </Button>
@@ -119,27 +121,10 @@ const Page = () => {
           ))}
         </div>
         <AnimatedList
-          items={filteredSurahs}
-          renderItem={(surah: Surah) => (
-            <SurahCard
-              key={surah.id}
-              surah={surah}
-              onClick={() => handleSurahClick(surah.id)}
-            />
-          )}
-          onItemSelect={(surah: Surah) => handleSurahClick(surah.id)}
-          itemsClassName="space-y-3"
-          maxHeight="500px"
-          displayScrollbar={true}
-          emptyState={
-            <div className="text-center py-8 text-muted-foreground">
-              {loading
-                ? t("loadingSurahs")
-                : searchQuery
-                  ? t("noSurahsFound")
-                  : t("loadingSurahs")}
-            </div>
-          }
+          className="w-full"
+          loading={loading}
+          surahs={filteredSurahs}
+          SelectAction={handleSurahClick}
         />
       </CardContent>
     </Card>

@@ -172,6 +172,7 @@ const Page = () => {
                 value={selectedCity?.name || ""}
                 onValueChange={handleCityChange}
                 disabled={useGPS || loading}
+                aria-label="location selector"
               >
                 <SelectTrigger className="flex-1 min-w-0 font-sans">
                   <SelectValue
@@ -230,6 +231,7 @@ const Page = () => {
               value={calculationMethod}
               onValueChange={handleMethodChange}
               disabled={loading}
+              aria-label="calculation method selector"
             >
               <SelectTrigger className="w-full font-sans">
                 <SelectValue />

@@ -81,6 +81,17 @@ export const translations = {
     adhanFinished: "Adhan finished playing",
     adhanFinishedDescription: "May Allah accept good deeds from us and you",
     hidjriCalendar: "Hidjri Calendar",
+    // surah page translations
+    lastRead: "Last Read",
+    ayahNumber: "Ayah Number",
+    playSurah: "Play Surah",
+    readQuran: "Read Quran",
+    ar: "(Arabic)",
+    en: "(English)",
+    aren: "(Arabic & English)",
+    podcast: "Podcast",
+    notes: "Notes",
+    listenQuran: "Listen Quran",
   },
   ar: {
     // Navigation
@@ -165,6 +176,17 @@ export const translations = {
     adhanFinished: "انتهى الأذان",
     adhanFinishedDescription: "تقبل الله منا ومنكم صالح الأعمال",
     hidjriCalendar: "التقويم الهجري",
+    // surah page translations
+    lastRead: "القراءة الأخيرة",
+    ayahNumber: "عدد الآيات",
+    playSurah: "تشغيل سورة",
+    readQuran: "قراءة القرآن",
+    ar: "بالعربية",
+    en: "بالإنجليزية",
+    aren: "بالعربية و بالإنجليزية",
+    podcast: "بودكاست",
+    notes: "ملاحضات",
+    listenQuran: "سماع القرآن",
   },
 };
 export const prayerNames = (isRTL: boolean) => {

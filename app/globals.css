@@ -312,6 +312,12 @@
     .flex-between {
         @apply flex justify-between items-center;
     }
+    .w-13 {
+        width: 3.125rem;
+    }
+    .h-13 {
+        height: 3.125rem;
+    }
 }
 
 /* Selection styling */

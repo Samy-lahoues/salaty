@@ -10,13 +10,19 @@ export const translations = {
     // Home page
     prayerTimes: "Prayer Times",
     todaysPrayerTimes: "Today's Prayer Times",
-    prayerTracker: "Daily Prayer Tracker",
-    nextPrayer: "Next",
     refresh: "Refresh",
     loading: "loading...",
     selectCity: "Select a city",
     usingGPS: "Using GPS",
     selectLocationMessage: "Please select a location to view prayer times",
+    prayerTracker: "Prayer Tracker",
+    todayProgress: "Today's Progress",
+    allPrayersCompleted: "All prayers completed today! 🎉",
+    nextPrayer: "Next Prayer",
+    timeUntilNext: "Time Until Next",
+    qiblaDirection: "Qibla Direction",
+    prayerStreak: "Prayer Streak",
+    weeklyProgress: "Weekly Progress",
     // Prayer names
     fajr: "Fajr",
     dhuhr: "Dhuhr",
@@ -83,7 +89,7 @@ export const translations = {
     hidjriCalendar: "Hidjri Calendar",
     // surah page translations
     lastRead: "Last Read",
-    ayahNumber: "Ayah Number",
+    ayahNumber: "Ayah No",
     playSurah: "Play Surah",
     readQuran: "Read Quran",
     ar: "(Arabic)",
@@ -92,6 +98,14 @@ export const translations = {
     podcast: "Podcast",
     notes: "Notes",
     listenQuran: "Listen Quran",
+    surahNotFound: "Surah not found",
+    goBack: "Go Back",
+    pauseSurah: "Pause",
+    surahFinished: "Surah Finished",
+    surahFinishedDescription: "The surah has finished playing",
+    noAudioAvailable: "No audio available",
+    audioPlaybackError: "Error playing audio",
+    audioLoadError: "Failed to load audio",
   },
   ar: {
     // Navigation
@@ -104,14 +118,14 @@ export const translations = {
     // Home page
     prayerTimes: "أوقات الصلاة",
     todaysPrayerTimes: "أوقات صلاة اليوم",
-    prayerTracker: "عداد الصلوات اليومية",
-    nextPrayer: "التالية",
-    refresh: "تحديث",
-    loading: "تحميل...",
-    selectCity: "إختر مدينة",
-    usingGPS: "إستعمال GPS",
-    selectLocationMessage:
-      "الرجاء إستعمال إحداثيات الموقع لإظهار مواقيت الصلاة",
+    prayerTracker: "متابعة الصلوات",
+    todayProgress: "تقدّم اليوم",
+    allPrayersCompleted: "تم أداء جميع الصلوات اليوم! 🎉",
+    nextPrayer: "الصلاة القادمة",
+    timeUntilNext: "الوقت المتبقي",
+    qiblaDirection: "اتجاه القبلة",
+    prayerStreak: "سلسلة الصلوات",
+    weeklyProgress: "تقدّم الأسبوع",
     // Prayer namess
     fajr: "الفجر",
     dhuhr: "الظهر",
@@ -179,7 +193,7 @@ export const translations = {
     // surah page translations
     lastRead: "القراءة الأخيرة",
     ayahNumber: "عدد الآيات",
-    playSurah: "تشغيل سورة",
+    playSurah: "تشغيل السورة",
     readQuran: "قراءة القرآن",
     ar: "بالعربية",
     en: "بالإنجليزية",
@@ -187,11 +201,38 @@ export const translations = {
     podcast: "بودكاست",
     notes: "ملاحضات",
     listenQuran: "سماع القرآن",
+    surahNotFound: "السورة غير موجودة",
+    goBack: "العودة",
+    pauseSurah: "إيقاف مؤقت",
+    surahFinished: "انتهت السورة",
+    surahFinishedDescription: "تم الانتهاء من تشغيل السورة",
+    noAudioAvailable: "لا يوجد صوت متاح",
+    audioPlaybackError: "حدث خطأ أثناء تشغيل الصوت",
+    audioLoadError: "فشل في تحميل الصوت",
   },
 };
 export const prayerNames = (isRTL: boolean) => {
   if (isRTL) return ["الفجر", "الظهر", "العصر", "المغرب", "العشاء"];
   return ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
+};
+export const recitersNames = (isRTL: boolean) => {
+  const englishNames = [
+    "Mishary Rashid Al Afasy",
+    "Abu Bakr Al Shatri",
+    "Nasser Al Qatami",
+    "Yasser Al Dosari",
+    "Hani Ar Rifai",
+  ];
+
+  const arabicNames = [
+    "مشاري راشد العفاسي",
+    "أبو بكر الشاطري",
+    "ناصر القطامي",
+    "ياسر الدوسري",
+    "هاني الرفاعي",
+  ];
+
+  return isRTL ? arabicNames : englishNames;
 };
 
 export type Language = keyof typeof translations;

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import type { Surah } from "@/constants";
 interface surahCardProps {
@@ -17,8 +18,15 @@ const SurahCard = ({ surah, onClick }: surahCardProps) => {
           {/* Left Column */}
           <div className="flex items-center space-x-3 min-w-0 flex-1">
             {/* Surah ID Circle */}
-            <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
-              <span className="text-accent font-semibold text-sm">
+            <div className="relative size-fit overflow-hidden">
+              <Image
+                width={50}
+                height={50}
+                className="w-13 h-13"
+                src="/star.png"
+                alt="star-img"
+              />
+              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-accent z-10 font-bold">
                 {surah.id}
               </span>
             </div>

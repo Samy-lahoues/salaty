@@ -104,7 +104,7 @@ const PrayerTimesCard = forwardRef<HTMLDivElement, PrayerTimesCardProps>(
                   body: `It's time for ${t(
                     prayerName as keyof typeof t,
                   )} prayer`,
-                  icon: "/icon-192x192.png", // Add your app icon
+                  icon: "/salaty.svg", // Add your app icon
                 },
               );
             }

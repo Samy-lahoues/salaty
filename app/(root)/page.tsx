@@ -1,11 +1,10 @@
 "use client";
 import useIsMobile from "@/hooks/useIsMobile";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import PrayerTimesCard from "@/components/ui/home/PrayerTimesCard";
 import DateHeader from "@/components/ui/DateHeader";
 import { Card, CardContent } from "@/components/ui/card";
-// import { Checkbox } from "@/components/ui/checkbox";
-// import { Label } from "@/components/ui/label";
+
 import { HijriCalendar } from "@/components/ui/hijri-calendar";
 import {
   Select,
@@ -16,16 +15,10 @@ import {
 } from "@/components/ui/select";
 import SpecialCard from "@/components/ui/SpecialCard";
 import { CALCULATION_METHODS } from "@/constants";
-// import { prayerNames } from "@/lib/translations";
+
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import {
-  MapPin,
-  Navigation,
-  Calculator,
-  AlertCircle,
-  // FlagTriangleLeft,
-} from "lucide-react";
+import { MapPin, Navigation, Calculator, AlertCircle } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
 import { usePrayerTimes } from "@/hooks/usePrayerTimes";
 
@@ -38,6 +31,13 @@ const Page = () => {
   const locationCard = useRef<HTMLDivElement>(null);
   const CalculationMethodsCard = useRef<HTMLDivElement>(null);
   const prayerTrackerCard = useRef<HTMLDivElement>(null);
+  const hijriCalendar = useRef<HTMLDivElement>(null);
+
+  // Prayer tracker state
+  const [prayerStatus, setPrayerStatus] = useState<{ [key: string]: boolean }>(
+    {},
+  );
+
   const {
     prayerTimes,
     error,
@@ -55,18 +55,26 @@ const Page = () => {
     setError,
   } = usePrayerTimes();
 
+  // Initialize prayer status from localStorage
+  useEffect(() => {
+    const today = new Date().toDateString();
+    const savedStatus = localStorage.getItem(`prayer-status-${today}`);
+    if (savedStatus) {
+      setPrayerStatus(JSON.parse(savedStatus));
+    }
+  }, []);
+
   // Clear error handler
   const clearError = () => {
     setError(null);
   };
 
   useEffect(() => {
-    // Wait for DOM elements to be ready
     const timer = setTimeout(() => {
       const ctx = gsap.context(() => {
-        // Check if refs are available before animating
-        if (prayerTrackerCard.current && !isMobile) {
-          gsap.from(prayerTrackerCard.current, {
+        // Animate hijri calendar
+        if (hijriCalendar.current && !isMobile) {
+          gsap.from(hijriCalendar.current, {
             xPercent: isRTL ? -100 : 100,
             opacity: 0,
             transformOrigin: isRTL ? "left left" : "right right",
@@ -76,14 +84,19 @@ const Page = () => {
         }
 
         // Animate left column cards
-        const leftColCards = [locationCard, CalculationMethodsCard];
-        leftColCards.forEach((cardRef) => {
+        const leftColCards = [
+          locationCard,
+          CalculationMethodsCard,
+          prayerTrackerCard,
+        ];
+        leftColCards.forEach((cardRef, index) => {
           if (cardRef.current && !isMobile) {
             gsap.from(cardRef.current, {
               xPercent: isRTL ? 100 : -100,
               opacity: 0,
               transformOrigin: isRTL ? "right right" : "left left",
               duration: 1,
+              delay: index * 0.1,
               ease: "power2.inOut",
             });
           }
@@ -107,7 +120,6 @@ const Page = () => {
         }
       });
 
-      // Cleanup function
       return () => {
         ctx.revert();
       };
@@ -117,6 +129,7 @@ const Page = () => {
       clearTimeout(timer);
     };
   }, [isRTL, isMobile]);
+
   return (
     <section className="container mx-auto px-3 sm:px-4 py-6 sm:py-8 max-w-6xl min-h-screen">
       {/* Header */}
@@ -220,6 +233,7 @@ const Page = () => {
               </p>
             )}
           </SpecialCard>
+
           {/* Calculation Method Card */}
           <SpecialCard
             ref={CalculationMethodsCard}
@@ -245,39 +259,16 @@ const Page = () => {
               </SelectContent>
             </Select>
           </SpecialCard>
+
+          {/* Prayer Tracker Card */}
         </div>
-        {/* Right Column - Prayer Times Display */}
-        {/*<SpecialCard
-          ref={prayerTrackerCard}
-          title="prayerTracker"
-          Icon={FlagTriangleLeft}
-          isRTL
-        >
-          <div className="flex flex-col gap-3 sm:gap-4 pt-4">
-            {prayerNames(isRTL).map((prayer, index) => (
-              <div
-                key={index}
-                className={`flex items-center justify-start gap-3`}
-              >
-                <Checkbox
-                  id={`terms-${index}`}
-                  className="data-[state=checked]:border-green-600 data-[state=checked]:bg-green-600 data-[state=checked]:text-white dark:data-[state=checked]:border-green-700 dark:data-[state=checked]:bg-green-700"
-                />
-                <div className="grid gap-2">
-                  <Label
-                    className="text-[18px] font-semibold"
-                    htmlFor={`terms-${index}`}
-                  >
-                    {prayer}
-                  </Label>
-                </div>
-              </div>
-            ))}
-          </div>
-        </SpecialCard>*/}
-        <SpecialCard isRTL={isRTL}>
+
+        {/* Right Column - Hijri Calendar */}
+        <SpecialCard isRTL={isRTL} ref={hijriCalendar}>
           <h3
-            className={`text-base sm:text-lg font-semibold mb-3 sm:mb-4 flex items-center gap-2`}
+            className={`text-base sm:text-lg font-semibold mb-3 sm:mb-4 flex items-center gap-2 ${
+              isRTL ? "flex-row-reverse" : ""
+            }`}
           >
             <svg
               width="24px"
@@ -328,6 +319,8 @@ const Page = () => {
           />
         </SpecialCard>
       </div>
+
+      {/* Prayer Times Card */}
       <PrayerTimesCard
         ref={prayerTimesCard}
         loading={loading}

@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import useTranslation from "@/hooks/useTranslation";
@@ -60,7 +61,7 @@ const Page = () => {
   };
 
   return (
-    <Card className="w-full max-w-4xl mx-auto mt-8 md:mt-16">
+    <Card className="w-full max-w-4xl mx-auto mt-8 md:mt-16 z-10">
       <CardHeader>
         <CardTitle className="flex items-center space-x-3">
           <div className="p-2 rounded-lg bg-accent-bg">

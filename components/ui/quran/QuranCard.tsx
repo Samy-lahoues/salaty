@@ -1,17 +1,20 @@
 import Image from "next/image";
 const QuranCard = ({
   className = "",
+  onClick,
   title,
   subtitle,
   col = true,
 }: {
   className?: string;
+  onClick: () => void;
   title: string;
   subtitle: string;
   col?: boolean;
 }) => {
   return (
     <div
+      onClick={onClick}
       className={`space-y-1.5 bg-gradient-to-br ${className} border border-green-400/60
       rounded-3xl p-6 h-full overflow-hidden  transition-all duration-500`}
     >

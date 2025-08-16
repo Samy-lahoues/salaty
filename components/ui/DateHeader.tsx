@@ -1,6 +1,5 @@
 import useTranslation from "@/hooks/useTranslation";
 import { Card, CardContent } from "./card";
-import { Calendar } from "lucide-react";
 import type { DateInfo } from "@/hooks/usePrayerTimes";
 import { translations } from "@/lib/translations";
 
@@ -90,7 +89,6 @@ const DateHeader = ({ dateInfo = null }: DateHeaderProps) => {
                   isRTL ? "flex-row-reverse" : ""
                 }`}
               >
-                <Calendar className="w-5 h-5 text-accent" />
                 <h2
                   className={`text-lg font-semibold text-gray-900 dark:text-white ${
                     isRTL ? "arabic-text" : "english-text"

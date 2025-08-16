@@ -118,6 +118,11 @@ export const translations = {
     // Home page
     prayerTimes: "أوقات الصلاة",
     todaysPrayerTimes: "أوقات صلاة اليوم",
+    refresh: "تحديث",
+    loading: "جاري التحميل...",
+    selectCity: "اختر مدينة",
+    usingGPS: "استخدام GPS",
+    selectLocationMessage: "يرجى اختيار موقع لعرض أوقات الصلاة",
     prayerTracker: "متابعة الصلوات",
     todayProgress: "تقدّم اليوم",
     allPrayersCompleted: "تم أداء جميع الصلوات اليوم! 🎉",

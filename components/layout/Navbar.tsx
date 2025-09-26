@@ -2,7 +2,6 @@
 import useIsMobile from "@/hooks/useIsMobile";
 import { usePathname } from "next/navigation";
 import LanguageToggler from "../ui/LanguageToggler";
-import ThemeToggler from "../ui/ThemeToggler";
 import { useTheme } from "@/hooks/useTheme";
 import { navItems } from "@/constants";
 import { useTranslation } from "@/hooks/useTranslation";
@@ -112,13 +111,11 @@ const Navbar = () => {
 
           {/* Desktop Controls */}
           <div className="hidden sm:flex items-center gap-2">
-            <ThemeToggler />
             <LanguageToggler />
           </div>
 
           {/* Mobile Controls */}
           <div className="flex items-center gap-2 sm:hidden">
-            <ThemeToggler />
             <LanguageToggler />
             <button
               onClick={toggleMobileMenu}

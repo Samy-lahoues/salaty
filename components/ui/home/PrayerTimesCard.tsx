@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import {
   forwardRef,
   useCallback,
@@ -205,7 +206,7 @@ const PrayerTimesCard = forwardRef<HTMLDivElement, PrayerTimesCardProps>(
     return (
       <Card
         ref={ref}
-        className="bg-gradient-to-br from-gray-800/80 to-black/80 backdrop-blur-xl border border-green-500/30 shadow-[0_0_15px_rgba(16,185,129,0.4)]  rounded-2xl"
+        className="bg-gradient-to-br from-gray-800/80 to-black/80 backdrop-blur-xl border border-green-500/30 shadow-[0_0_15px_rgba(16,185,129,0.4)]  rounded-2xl mb-6"
       >
         {/* Hidden audio element */}
         <audio
@@ -279,11 +280,61 @@ const PrayerTimesCard = forwardRef<HTMLDivElement, PrayerTimesCardProps>(
           {loading ? (
             <div className="grid gap-4">
               {[
-                { name: "fajr", icon: "🌅" },
-                { name: "dhuhr", icon: "☀️" },
-                { name: "asr", icon: "🌤️" },
-                { name: "maghrib", icon: "🌄" },
-                { name: "isha", icon: "🌙" },
+                {
+                  name: "fajr",
+                  icon: (
+                    <Image
+                      width={16}
+                      height={16}
+                      src="/fajr.svg"
+                      alt="fajr-icon"
+                    />
+                  ),
+                },
+                {
+                  name: "dhuhr",
+                  icon: (
+                    <Image
+                      width={16}
+                      height={16}
+                      src="/dhuhr.svg"
+                      alt="dhuhr-icon"
+                    />
+                  ),
+                },
+                {
+                  name: "asr",
+                  icon: (
+                    <Image
+                      width={16}
+                      height={16}
+                      src="/asr.svg"
+                      alt="asr-icon"
+                    />
+                  ),
+                },
+                {
+                  name: "maghrib",
+                  icon: (
+                    <Image
+                      width={16}
+                      height={16}
+                      src="/maghrib.svg"
+                      alt="maghrib-icon"
+                    />
+                  ),
+                },
+                {
+                  name: "isha",
+                  icon: (
+                    <Image
+                      width={16}
+                      height={16}
+                      src="/isha.svg"
+                      alt="isha-icon"
+                    />
+                  ),
+                },
               ].map((prayer) => (
                 <div
                   key={prayer.name}
@@ -309,27 +360,62 @@ const PrayerTimesCard = forwardRef<HTMLDivElement, PrayerTimesCardProps>(
                 {
                   name: "fajr",
                   time: prayerTimes.Fajr,
-                  icon: "🌅",
+                  icon: (
+                    <Image
+                      width={35}
+                      height={35}
+                      src="/fajr.svg"
+                      alt="fajr-icon"
+                    />
+                  ),
                 },
                 {
                   name: "dhuhr",
                   time: prayerTimes.Dhuhr,
-                  icon: "☀️",
+                  icon: (
+                    <Image
+                      width={35}
+                      height={35}
+                      src="/dhuhr.svg"
+                      alt="dhuhr-icon"
+                    />
+                  ),
                 },
                 {
                   name: "asr",
                   time: prayerTimes.Asr,
-                  icon: "🌤️",
+                  icon: (
+                    <Image
+                      width={35}
+                      height={35}
+                      src="/asr.svg"
+                      alt="asr-icon"
+                    />
+                  ),
                 },
                 {
                   name: "maghrib",
                   time: prayerTimes.Maghrib,
-                  icon: "🌄",
+                  icon: (
+                    <Image
+                      width={35}
+                      height={35}
+                      src="/maghrib.svg"
+                      alt="maghrib-icon"
+                    />
+                  ),
                 },
                 {
                   name: "isha",
                   time: prayerTimes.Isha,
-                  icon: "🌙",
+                  icon: (
+                    <Image
+                      width={35}
+                      height={35}
+                      src="/isha.svg"
+                      alt="isha-icon"
+                    />
+                  ),
                 },
               ].map((prayer, index) => (
                 <div
@@ -344,7 +430,7 @@ const PrayerTimesCard = forwardRef<HTMLDivElement, PrayerTimesCardProps>(
                       : ""
                   }`}
                 >
-                  <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="flex items-center gap-2 sm:gap-3 overflow-hidden">
                     <span className="text-2xl">{prayer.icon}</span>
                     <span className="font-semibold text-lg text-gray-900 dark:text-white">
                       {t(prayer.name as keyof typeof t)}

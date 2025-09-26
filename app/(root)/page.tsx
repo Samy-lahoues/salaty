@@ -144,6 +144,13 @@ const Page = () => {
         <DateHeader dateInfo={dateInfo} />
       </div>
 
+      {/* Prayer Times Card */}
+      <PrayerTimesCard
+        ref={prayerTimesCard}
+        loading={loading}
+        prayerTimes={prayerTimes}
+        onRefresh={handleRefresh}
+      />
       {/* Error Display */}
       {error && (
         <div className="mb-4 sm:mb-6">
@@ -319,14 +326,6 @@ const Page = () => {
           />
         </SpecialCard>
       </div>
-
-      {/* Prayer Times Card */}
-      <PrayerTimesCard
-        ref={prayerTimesCard}
-        loading={loading}
-        prayerTimes={prayerTimes}
-        onRefresh={handleRefresh}
-      />
     </section>
   );
 };
